@@ -10,7 +10,8 @@
   width: 100%;
   padding: 2rem 6rem;
 
-  &__brand {
+
+  .NavBar__brand {
     @include tappable;
     font-family: 'Noto Serif JP';
     font-weight: 700;
@@ -18,11 +19,13 @@
     font-size: 1.7rem;
   }
 
+
   &__links {
     @include row-space-between;
     min-width: 22rem;
     width: 40%;
     font-size: 1.15rem;
+
 
     &__link {
       @include tappable;
@@ -33,6 +36,7 @@
         color: $color-black;
       }
     }
+
 
     &__link .active::after {
       content: '';
@@ -47,6 +51,7 @@
       background-color: $color-beige;
     }
 
+
     .dropdownButton {
       padding: 1rem;
       transform: rotate(180deg);
@@ -54,9 +59,11 @@
     }
   }
 
+
   &__actions {
     @include row-center;
     @include gutter-h(3rem);
+
 
     & > * { @include tappable; }
   }
