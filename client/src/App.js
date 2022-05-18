@@ -1,11 +1,14 @@
 import classes from './App.module.scss';
 import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
+import CreditModal from './components/CreditModal';
 import Home from './pages/Home';
 
 function App() {
   return (
     <div className={classes.App}>
+      <CreditModal useStorage={true}/>
+
       <NavBar fixed={true} />
 
       <Routes>
