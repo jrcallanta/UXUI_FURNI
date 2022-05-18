@@ -1,0 +1,197 @@
+@import '~/src/scss/base';
+@import '~/src/scss/_animations';
+
+section.Hero {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  height: 53rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow: hidden;
+
+  .clipper {
+    clip-path: polygon(
+      23.45% 0,
+      calc(100% - 4rem) 0,
+      calc(100% - 4rem) 100%,
+      23.45% 100%
+    );
+
+    div {
+      height: 47rem;
+      width: calc(100%-3.15rem);
+
+      background-size: cover;
+      background-position: center;
+      background-image: url('~/public/images/hero1.png');
+    }
+  }
+
+
+  .glassBox {
+    @include column-center;
+    @include floating-glass;
+    align-items: flex-start;
+    top: 14%;
+    left: 3rem;
+    padding: 3rem 4rem 3rem 3rem;
+    width: 28rem;
+    height: 25.5rem;
+
+    p {
+      margin-top: 2rem;
+      max-width: 85%;
+    }
+  }
+
+
+  .dots {
+    position: absolute;
+    top: 5.75%; //2.5rem;
+    left: 9.70%; //8.25rem;
+  }
+
+
+  .miniGlassBox {
+    @include center;
+    @include floating-glass;
+    @include tappable;
+    top: 47rem - 8.5rem + 1.5rem;
+    right: calc(6rem - 1.5rem);
+    width: 8.5rem;
+    height: 8.5rem;
+
+    a { z-index: 1; }
+  }
+
+
+  .carouselControl {
+    @include column-center;
+    @include gutter-v(9rem);
+    position: absolute;
+    right: 2.2rem;
+    top: 0%;
+    height: 47rem;
+
+
+    &__buttons {
+      @include column-space-between;
+      @include gutter-v(1.5rem);
+
+      & > :nth-child(1) {
+        @include tappable;
+      }
+
+      & > :nth-child(2) {
+        @include tappableWithExisting(rotate(180deg));
+        transform: rotate(180deg);
+      }
+    }
+
+
+    &__indicator {
+      @include column-space-between;
+
+      &__number {
+        padding: 1rem 0;
+        font-family: 'Noto Serif JP';
+        font-size: 1rem;
+        font-weight: 800;
+        line-height: 1;
+        color: $color-black;
+      }
+
+      & > div {
+        position: relative;
+        left: .5rem;
+        flex-grow: 1;
+        height: 3.25rem;
+        width: 1rem;
+        border-left: 1px solid $color-black;
+      }
+    }
+  }
+}
+
+
+section.Hero {
+  @include respond(tab-land) {
+    .glassBox,
+    .miniGlassBox { background-color: rgba($color-white, .4); }
+  }
+
+  @include respond(tab-port) {
+    height: 56rem;
+
+    .glassBox {
+      top: 15%;
+      width: 37%;
+      height: 27rem;
+      padding: 2rem 4rem 2rem 2rem;
+    }
+
+    .dots {
+      top: 5%;
+    }
+  }
+
+  @include respond(phone) {
+    height: 50rem;
+    position: relative;
+
+    .clipper {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 95%,
+        0 95%
+      );
+    }
+
+    .dots { display: none; }
+
+    .carouselControl { display: none; }
+
+    .glassBox {
+      background-color: rgba($color-white, .6);
+      top: 2rem;
+      left: 1rem;
+      padding: 2.5rem 4rem 2.5rem 2rem;
+    }
+
+    .miniGlassBox {
+      top: calc(.95 * 47rem - 4.5rem + 1rem);
+      right: 1rem;
+      height: 4.5rem;
+      width: 4.5rem;
+      background-color: rgba($color-beige, 1);
+    }
+  }
+}
+
+
+section.Hero {
+  .clipper {
+    animation:
+      fadeUp 1s ease-out,
+      focus 1s ease;
+  }
+
+  .glassBox {
+    animation:
+      fadeRight 1s ease-out .4s backwards,
+      focus .65s ease-out .5s backwards;
+  }
+
+  .dots {
+    animation:
+      focus 1.8s ease-out;
+  }
+
+  .miniGlassBox {
+    animation:
+      fadeUp 1s ease-out,
+      focus .65s ease-out .5s backwards;
+  }
+}

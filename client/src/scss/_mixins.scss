@@ -1,0 +1,49 @@
+/****** Stylized Glassbox ******/
+@mixin floating-glass {
+  position: absolute;
+  backdrop-filter: blur(1.85rem);
+  background-color: rgba($color-white, .3);
+}
+
+@mixin ledge {
+  transition: .5s all $smooth;
+
+  box-shadow:
+    0 .185rem .315rem rgba($color-green, .05),
+    0 .815rem .653rem  rgba($color-green, .06),
+    0 2rem 1.3rem  rgba($color-green, .07),
+    0 3.852rem 2.548rem  rgba($color-green, .08),
+    0 6.481rem 4.685rem  rgba($color-green, .09),
+    0 10rem 8rem  rgba($color-green, .1);
+}
+
+@mixin button {
+  @include ledge-with-hover;
+  display: inline-block;
+  height: fit-content;
+  white-space: nowrap;
+  padding: 1rem 2.2rem;
+  background-color: $color-grey-1;
+  a { color: $color-grey-3; }
+}
+
+/****** Micro interaction ******/
+@mixin removeHover { &:hover { pointer-events: none; }}
+@mixin tappable { transition: 50ms transform $smooth; cursor: pointer; &:active { transform: scale(.95); } }
+
+@mixin tappableWithExisting($other-transformations) { cursor: pointer; &:active { transform: scale(.95) $other-transformations; } }
+
+@mixin ledge-with-hover {
+  @include ledge;
+
+  &:hover {
+    transform: translateY(.5rem);
+    box-shadow:
+      0 .685rem .415rem rgba($color-green, .03),
+      0 1.315rem .753rem  rgba($color-green, .04),
+      0 2.5rem 2.3rem  rgba($color-green, .05),
+      0 4.852rem 3.548rem  rgba($color-green, .06),
+      0 7.481rem 5.685rem  rgba($color-green, .07),
+      0 11rem 9rem  rgba($color-green, .08);
+  }
+}

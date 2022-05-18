@@ -1,0 +1,85 @@
+@import '~/src/scss/base';
+
+.Review {
+  position: absolute;
+  @include row;
+  height: 100%;
+  width: 100%;
+  align-items: stretch;
+
+  .leftSide {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+
+    & > * { margin: 0 3rem; }
+  }
+
+  .rightSide {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+
+    & > * { margin-right: 3rem; }
+    .spacer { height: 6rem; }
+  }
+
+
+
+  &__image {
+    align-self: stretch;
+    max-height: 100%;
+    & > img { max-width: 100%; max-height: 100%; }
+  }
+
+  &__text {
+    flex: 1;
+    flex-basis: 100%;
+    @include column-space-between;
+    align-items: flex-start;
+    max-width: 26rem;
+    min-width: 26rem;
+  }
+
+  &__reviewer {
+    @include gutter-v(.5rem);
+  }
+}
+
+.Review {
+  .Review__title { font-size: 2.1rem; color: $color-green; font-weight: 600; font-family: 'Noto Sans JP';}
+  .Review__desc { font-size: 1.6rem; color: $color-green; font-weight: 500; line-height: 1.6; }
+  .Review__reviewer__name { font-size: 1.35rem; color: $color-black; font-weight: 500; line-height: 1.3}
+  .Review__reviewer__title { font-size: 1rem; color: $color-dark-grey-1; line-height: 1.3}
+}
+
+
+.Review {
+  @include respond(tab-land) {
+
+  }
+
+  @include respond(tab-port) {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+
+    .leftSide { flex: revert; justify-content: flex-start; max-height: 12rem; & > * { margin: 0; } }
+    .rightSide { flex: revert; max-height: fit-content; }
+    .spacer { display: none; }
+
+    &__text { @include gutter-v(3rem); }
+    & > * { width: 50%; margin: 0 auto; }
+  }
+
+  @include respond(phone) {
+    @include column;
+    @include gutter-v(4rem);
+
+    & > * { width: unset; margin: 0; }
+    &__text { & > :not(:last-child) { margin: 0; }}
+
+    &__reviewer { max-width: 16rem; }
+  }
+}

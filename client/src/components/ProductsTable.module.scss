@@ -1,0 +1,123 @@
+@import '~/src/scss/base';
+
+.ProductTable {
+
+  .nav {
+    @include center;
+    z-index: 1;
+    padding: 3rem;
+
+    &__items {
+      @include row-space-between;
+      @include gutter-h(4rem);
+    }
+  }
+
+  .display {
+    min-height: 50rem;
+    padding: 3rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 1rem 4rem;
+    opacity: 1;
+    position: relative;
+
+    &__empty {
+      @include column;
+      @include gutter-v(.5rem);
+      position: absolute;
+      text-align: center;
+      top: 10%;
+      left: 0;
+      right: 0;
+      margin: auto;
+
+      span:not(.category) { display: block; }
+      span.category { font-weight: 600; color: $color-green}
+    }
+  }
+}
+
+
+
+.ProductTable {
+  .nav__items__item a,
+  .nav__items__item p {
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: $color-grey-2;
+    text-transform: capitalize;
+
+    &.active { color: $color-black; }
+  }
+}
+
+
+
+
+.ProductTable {
+  @include respond(tab-land) {
+    .display {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4, auto);
+    }
+  }
+
+  @include respond(tab-port) {
+    .nav {
+      padding: 5rem 0;
+    }
+
+    .display {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @include respond(phone) {
+
+    .nav {
+      padding: 3rem 1rem 1rem;
+      position: relative;
+
+      &__items {
+        // @include gutter-h(2.5em);
+        padding-right: 25%;
+        overflow: scroll;
+        scroll-behavior: smooth;
+        justify-content: flex-start;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      &::after {
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        z-index: 1;
+        width: calc(101%);
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, transparent 80%, white);
+      }
+    }
+
+
+    .display {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(auto-fit, auto);
+      grid-gap: 4rem 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}

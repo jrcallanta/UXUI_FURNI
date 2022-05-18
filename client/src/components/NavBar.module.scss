@@ -1,0 +1,112 @@
+@import '~/src/scss/base.scss';
+@import '~/src/scss/animations';
+
+
+.NavBar {
+  @include row-space-between;
+  @include gutter-h(2rem);
+  background-color: $color-white;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem 6rem;
+
+  &__brand {
+    @include tappable;
+    font-family: 'Noto Serif JP';
+    font-weight: 700;
+    color: $color-green;
+    font-size: 1.7rem;
+  }
+
+  &__links {
+    @include row-space-between;
+    min-width: 22rem;
+    width: 40%;
+    font-size: 1.15rem;
+
+    &__link {
+      @include tappable;
+      position: relative;
+      transition: all .3 ease-in-out;
+
+      & > a {
+        color: $color-black;
+      }
+    }
+
+    &__link .active::after {
+      content: '';
+      animation: growRight .5s ease-in-out;
+      position: absolute;
+      display: inline-block;
+      bottom: -.25rem;
+      left: 0;
+      width: 100%;
+      max-width: 2rem;
+      height: .2rem;
+      background-color: $color-beige;
+    }
+
+    .dropdownButton {
+      padding: 1rem;
+      transform: rotate(180deg);
+      display: none;
+    }
+  }
+
+  &__actions {
+    @include row-center;
+    @include gutter-h(3rem);
+
+    & > * { @include tappable; }
+  }
+}
+
+
+.NavBar[type="fixed"] {
+  position: fixed;
+  max-width: inherit;
+  z-index: 1000;
+  top: 0;
+  opacity: 1;
+  transition: top .25s ease-in-out, opacity .30s ease-in-out;
+}
+
+
+.NavBar[type="fixed"].hidden {
+  top: -15%;
+  opacity: 0;
+}
+
+
+.NavBar {
+  @include respond(tab-port) {
+    &__links {
+      min-width: 0;
+      @include row-center;
+
+      &__link :not(.active) {
+        display: none;
+      }
+
+      &__link .active::after {
+        max-width: none;
+      }
+
+      .dropdownButton {
+        @include center;
+        @include tappableWithExisting(rotate(180deg));
+      }
+    }
+  }
+
+  @include respond(phone) {
+    &__links {
+      display: none;
+    }
+
+    .searchButton {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@import '~/src/scss/base';
+@import '~/src/scss/_animations';
+
+.Products {
+  padding: 6rem;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+
+  .heading {
+    @include row-space-between;
+    align-items: center;
+    padding: 0 3rem;
+
+    &__button {
+      @include row-space-between;
+      align-items: stretch;
+      margin-right: 3rem;
+      transition: .5s all $smooth;
+      cursor: pointer;
+
+      &__text {
+        transition: inherit;
+        margin-right: 2.5rem;
+      }
+
+      &__icon {
+        transition: inherit;
+        width: 2.4rem;
+        background-color: $color-light-grey-1;
+        position: relative;
+        display: inline-block;
+
+        & > * {
+          transition: inherit;
+          position: absolute;
+          height: 110%;
+          left: -.6rem;
+        }
+      }
+
+      &:hover {
+        margin-right: 2rem;
+        .heading__button__text { margin-left: 2rem; margin-right: 2rem; }
+        .heading__button__icon > * { left: .5rem };
+      }
+    }
+  }
+
+  .table {
+    position: relative;
+  }
+
+
+}
+
+
+
+.Products {
+  .heading__button__text {
+    font-size: 1.16rem;
+    color: $color-black;
+  }
+}
+
+
+.Products {
+  @include respond(tab-land) {
+    .heading__button__text { margin-right: 1.5rem; }
+  }
+
+  @include respond(tab-port) {
+    padding: 2rem;
+
+    .heading { padding: 4rem 4rem 1rem; }
+    .heading__title { font-size: 2.4rem; }
+    .heading__button__text { font-size: 1rem; }
+  }
+
+  @include respond(phone) {
+    .heading {
+      padding: 1rem 0;
+      align-items: stretch;
+    }
+    .heading__title { padding: 0 4rem; }
+    .heading__button {
+      margin-right: 4rem;
+      &:hover {
+        margin: 0;
+        .heading__button__text { margin: auto 0; }
+      }
+    }
+    .heading__button__text { margin: auto; }
+    .heading__button__icon { display: none; }
+  }
+}

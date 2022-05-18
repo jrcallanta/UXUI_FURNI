@@ -1,0 +1,220 @@
+@import '~/src/scss/base';
+@import '~/src/scss/_animations';
+
+
+
+section.AboutUs {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  padding: 0 6rem 6rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr ;
+  grid-template-areas:
+    "heading heading heading"
+    "facts . images"
+  ;
+
+  .heading { grid-area: heading; }
+  .facts { grid-area: facts; }
+  .images { grid-area: images; }
+
+  .heading {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr;
+    grid-template-areas:
+      "title . button"
+      "desc  . button"
+    ;
+    gap: 1rem;
+
+    &__title { grid-area: title; }
+    &__desc { grid-area: desc; span {display: block; white-space: pre-wrap; } }
+    &__button { grid-area: button; margin: auto 2rem auto auto;}
+    &__button a {
+      @include button;
+    }
+  }
+
+
+  .facts {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4rem;
+
+    &__fact {
+      min-width: 12rem;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      grid-row-gap: 1rem;
+    }
+  }
+
+
+  .images {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding: 2rem;
+    padding-right: 0;
+    @include row-center;
+    @include gutter-h(1.8rem);
+
+    & > :first-child { margin-top: 6rem; }
+
+    & > div {
+      @include column-center;
+      @include gutter-v(1.8rem);
+      & > :last-child { z-index: 2; }
+    }
+
+    &__image {
+      @include ledge;
+      @include center;
+      max-width: 17rem;
+      overflow: hidden;
+      position: relative;
+
+      img {
+        transition: 1s all $smooth;
+        max-width: 100%;
+        max-height: 100%;
+        transform: scale(1.1);
+      }
+
+      &:hover {
+        & img { transform: scale(1); }
+      }
+    }
+  }
+
+}
+
+
+section.AboutUs {
+  .heading__title { line-height: 1.8; }
+  .heading__desc { line-height: 1.5; }
+  .heading__button a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: $color-grey-3;
+  }
+
+  .facts__fact__num { font-size: 3.6rem; line-height: 1.5; color: $color-green; }
+  .facts__fact__title { font-size: 1.5rem; line-height: 1.5; font-weight: 600; color: $color-green; }
+  .facts__fact__desc { font-size: 1.1rem; line-height: 1.5; }
+}
+
+
+
+section.AboutUs {
+  @include respond(tab-land) {
+    position: relative;
+    min-height: 70rem;
+
+    .heading {
+      &__title { font-size: 3.2rem; }
+      &__button { margin-left: auto; }
+      grid-template-areas:
+        "title title button"
+        "desc desc button"
+      ;
+
+    }
+
+    .facts {
+
+    }
+
+    .images {
+      padding: 0;
+
+      & > div { width: 100%; }
+      & > :first-child { display: none; }
+      &__image:nth-child(1) { margin-left: auto; }
+      &__image:nth-child(2) { margin-right: auto; }
+    }
+  }
+
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "heading heading heading"
+      "facts facts images"
+    ;
+    grid-column-gap: 3rem;
+
+
+    .heading {
+      padding: 0;
+      margin-bottom: 4rem;
+      grid-template-rows: 1fr 1fr;
+      grid-template-areas:
+        "title title button"
+        "desc desc desc"
+      ;
+
+      &__title {  font-size: 2.4rem; }
+      &__desc {  }
+      &__button {  }
+      &__button a { font-size: .9rem; }
+    }
+
+    .facts {
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      @include column;
+      @include gutter-v(2.5rem);
+
+      &__fact {
+        width: 100%;
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+          "num title"
+          "desc desc"
+        ;
+        grid-gap: 1rem;
+
+        &__num { grid-area: num; line-height: 1; }
+        &__title { grid-area: title; align-self: flex-end; font-size: 1rem;}
+        &__desc { grid-area: desc; }
+      }
+    }
+
+    .images {
+      padding: 0 3.5rem;
+      top: 0;
+      left: unset;
+      right: -11rem;
+
+      & > :not(:last-child) { margin-right: revert; } // undo horizontal gutter
+      @include column;
+      @include gutter-v(1.8rem);
+      & > :first-child { display: revert; }
+    }
+
+  }
+
+
+  @include respond(phone) {
+
+    .heading {
+      @include column;
+      @include gutter-v(1rem);
+      align-items: flex-start;
+      &__button { margin: 1rem auto 2rem 0;}
+    }
+  }
+}

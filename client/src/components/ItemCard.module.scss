@@ -1,0 +1,170 @@
+@import '~/src/scss/base';
+@import '~/src/scss/_animations';
+
+.ItemCard {
+  box-sizing: border-box;
+  @include column;
+  @include gutter-v(2rem);
+  min-width: 15rem;
+  animation: 1s fadeRight $smooth;
+  align-items: flex-start;
+  padding: 1rem;
+  position: relative;
+  box-sizing: border-box;
+
+  &__name {
+    box-sizing: inherit;
+    width: 100%;
+    padding: 2rem;
+    padding-bottom: 0;
+  }
+
+  &__button {
+    @include tappable;
+    @include center;
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background-color: $color-beige;
+    border-radius: 50%;
+    padding: .5rem;
+    box-sizing: border-box;
+
+    & > * {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &__prices {
+    @include row;
+    @include gutter-h(10%);
+    box-sizing: inherit;
+    width: 100%;
+    padding: 2rem;
+    padding-top: 0;
+    width: 100%;
+
+    &__discount {
+    }
+
+    &__retail {
+
+    }
+
+    &__retail.crossed {
+      color: $color-grey-2;
+      position: relative;
+
+      &::after {
+        content: '';
+        z-index: 1;
+        background-color: $color-grey-2;
+        position: absolute;
+        width: 120%;
+        top: 50%;
+        left: 50%;
+        height: 1px;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+
+  }
+
+  &__image {
+    @include center;
+    margin: auto;
+    height: 20rem;
+    box-sizing: border-box;
+
+    & > img {
+      transition: .5s all $smooth;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &::after {
+    content: '';
+    transition: 1s all $smooth;
+    display: inline-block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background-color: rgba($color-green, .1);
+  }
+
+
+  &:hover {
+    &::after {
+      // @include ledge;
+      height: 75%;
+    }
+    img {
+      transform: scale(1.08);
+    }
+  }
+}
+
+
+
+.ItemCard {
+  .ItemCard__name {
+    font-size: 1.4rem;
+    color: $color-black;
+  }
+
+  .ItemCard__prices__discount,
+  .ItemCard__prices__retail {
+    font-size: 1.2rem;
+  }
+
+  .ItemCard__prices__discount {
+    color: $color-black;
+  }
+}
+
+
+
+
+.ItemCard {
+  @include respond(tab-land) {
+
+    &__name {
+      text-align: center;
+    }
+
+    &__prices {
+      @include row-center;
+    }
+  }
+
+  @include respond(tab-port) {
+
+  }
+
+  @include respond(phone) {
+    display: grid;
+    grid-template-areas:
+      "name image"
+      "prices image"
+      ". image"
+    ;
+
+    &__button { top: - 1.5rem; left: -1.5rem; width: 3rem; height: 3rem; padding: .8rem; }
+    &__name { grid-area: name; text-align: left; }
+    &__prices { grid-area: prices; justify-content: flex-start; }
+    &__image { grid-area: image; }
+    &::after { height: 65%; }
+    &:hover { &::after { height: 75%; } }
+  }
+
+}

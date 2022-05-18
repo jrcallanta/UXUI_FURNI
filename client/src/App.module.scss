@@ -1,0 +1,11 @@
+@import '~/src/scss/base.scss';
+
+.App {
+  position: relative;
+  width: 100%;
+  min-width: 400px;
+  max-width: 1446px;
+  margin: auto;
+  overflow-x: overlay;
+  overflow-y: hidden;; // ? not sure why it's needed but causes nested scrollbars
+}

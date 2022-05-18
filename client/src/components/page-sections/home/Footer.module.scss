@@ -1,0 +1,188 @@
+@import '~/src/scss/base';
+
+.Footer {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6rem;
+
+  background-color: $color-green;
+  color: $color-white;
+
+  @include column;
+  align-items: stretch;
+
+  .heading {
+    box-sizing: border-box;
+    margin: 4rem;
+    padding-bottom: 4rem;
+    @include row-space-between;
+    @include gutter-h(3rem);
+    border-bottom: 1px solid rgba($color-white, .1);
+
+    &__text {
+      width: 120%;
+    }
+
+    &__actions {
+      width: 100%;
+      @include row;
+      @include gutter-h(1rem);
+      justify-content: flex-end;
+
+      &__action {
+        @include tappable;
+        padding: 1rem 2.75rem;
+        border-radius: 5rem;
+        font-weight: 500;
+        background-color: rgba($color-white, .1);
+        white-space: nowrap;
+        text-align: center;
+      }
+
+      &__action[type='light'] {
+        background-color: $color-white;
+        color: $color-green;
+      }
+    }
+  }
+
+  .sitemap {
+    align-self: stretch;
+    box-sizing: border-box;
+    margin: 2rem 4rem;
+    padding-bottom: 4rem;
+
+    @include row-space-between;
+    @include gutter-h(8rem);
+    align-items: stretch;
+
+    &__brand {
+      @include column;
+      @include gutter-v(2rem);
+      align-items: flex-start;
+      max-width: 15rem;
+
+      .socials__list{
+        @include row-center;
+        @include gutter-h(1.5rem);
+        align-items: stretch;
+
+        &__item { @include center; }
+      }
+    }
+
+    .sitemap__map {
+      width: 100%;
+
+      .lists {
+        @include row-space-between;
+        @include gutter-h(1rem);
+        align-items: stretch;
+
+        &__list {
+          .subject {
+            margin-bottom: 1.2rem;
+          }
+
+          .links {
+            @include column;
+            @include gutter-v(1.2rem);
+            align-items: flex-start;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.Footer {
+  .heading__text { font-size: 3rem; }
+  .heading__actions { font-size: 1.3rem; }
+
+  .sitemap__brand {
+    .title { color: $color-white; font-size: 1.8rem; font-family: 'Noto Serif JP'; }
+    .desc { color: $color-white; font-size: 1rem; line-height: 1.8; }
+  }
+
+  .sitemap__map {
+    .lists__list .subject { color: $color-white; font-size: 1.1rem; font-weight: 600; }
+    .lists__list .links a { color: $color-white; font-size: 1.1; font-weight: 400;}
+  }
+}
+
+
+.Footer {
+  @include respond(tab-land) {
+
+    .heading .heading__actions {
+      @include column;
+      @include gutter-v(2rem);
+      width: 25rem;
+      align-items: stretch;
+      & > :not(:last-child) {  margin-right: revert; }
+    }
+
+    .sitemap .sitemap__map .lists {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-gap: 4rem;
+    }
+  }
+
+
+  @include respond(tab-port) {
+    padding: 2rem;
+
+    .heading {
+      @include column;
+      @include gutter-v(4rem);
+      align-items: flex-start;
+
+      .heading__text {
+        width: revert;
+      }
+
+      .heading__actions {
+        width: unset;
+        & > :not(:last-child) { margin-bottom: revert; }
+        @include row;
+        @include gutter-h(1rem);
+      }
+    }
+
+    .sitemap {
+      & > :not(:last-child) { margin: revert; }
+      @include column;
+      @include gutter-v(7rem);
+      align-items: stretch;
+
+      &__brand { max-width: none; }
+    }
+  }
+
+  @include respond(phone) {
+    .heading {
+      margin: 2rem;
+      margin-bottom: 4rem;
+
+      .heading__text {
+        margin: 0 0 4rem 0;
+        font-size: 2.4rem;
+      }
+
+      .heading__actions {
+        & > :not(:last-child) { margin: revert; }
+        width: 100%;
+        @include column;
+        @include gutter-v(2rem);
+        align-items: stretch;
+      }
+    }
+
+    .sitemap {
+      margin: 2rem;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ars_furnishop",
+  "version": "1.0.0",
+  "description": "This is frontend react project for practice",
+  "main": "./server/app.js",
+  "scripts": {
+    "start": "cd ./server && npm start",
+    "build": "cd ./server && (npm install && npm run build)"
+  },
+  "author": "Jelito S Callanta II",
+  "license": "ISC"
+}

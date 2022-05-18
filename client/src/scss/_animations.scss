@@ -1,0 +1,25 @@
+@keyframes fadeUp {
+  0%    { transform: translateY(25%); opacity: 0; }
+  80%   { transform: translateY(0); }
+  100%  { opacity: 1; }
+}
+
+
+@keyframes fadeRight {
+  0%    { transform: translateX(-25%); opacity: 0; }
+  80%   { transform: translateX(0); }
+  100%  { opacity: 1; }
+}
+
+
+@keyframes focus {
+  0%    { filter: blur(1rem); }
+  100%  { filter: blur(0); }
+}
+
+
+@keyframes growRight {
+  0%    { width: 0; opacity: 0; }
+  95%   { width: 100%; }
+  100%  { opacity: 1; }
+}
