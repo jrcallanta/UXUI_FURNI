@@ -62,8 +62,8 @@
   @include respond(tab-port) {
     box-sizing: border-box;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
 
     .leftSide { flex: revert; justify-content: flex-start; max-height: 12rem; & > * { margin: 0; } }
     .rightSide { flex: revert; max-height: fit-content; }
@@ -74,12 +74,12 @@
   }
 
   @include respond(phone) {
+    height: 100%;
     @include column;
     @include gutter-v(4rem);
 
     & > * { width: unset; margin: 0; }
     &__text { & > :not(:last-child) { margin: 0; }}
-
     &__reviewer { max-width: 16rem; }
   }
 }

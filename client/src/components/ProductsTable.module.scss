@@ -14,7 +14,7 @@
   }
 
   .display {
-    min-height: 50rem;
+    min-height: 30rem;
     padding: 3rem;
     box-sizing: border-box;
     width: 100%;
@@ -34,7 +34,7 @@
       top: 10%;
       left: 0;
       right: 0;
-      margin: auto;
+      margin: 3rem auto;
 
       span:not(.category) { display: block; }
       span.category { font-weight: 600; color: $color-green}
