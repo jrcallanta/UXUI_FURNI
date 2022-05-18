@@ -38,7 +38,7 @@ function NavBar(props) {
 
     window.addEventListener('scroll', handleScroll);
     return () => { window.removeEventListener('scroll', handleScroll); }
-  }, [prevScrollPos, isVisible])
+  }, [prevScrollPos, isVisible, props])
 
 
   function activeClass({isActive}) {
