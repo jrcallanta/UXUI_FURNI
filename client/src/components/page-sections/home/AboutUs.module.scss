@@ -201,15 +201,14 @@ section.AboutUs {
 
       & > :not(:last-child) { margin-right: revert; } // undo horizontal gutter
       @include column;
-      @include gutter-v(1.8rem);
-      & > :first-child { display: revert; }
+      @include gutter-v(5rem);
+      & > div { @include gutter-v(5rem); }
+      & > :first-child { display: revert; margin-top: revert; }
     }
-
   }
 
 
   @include respond(phone) {
-
     .heading {
       @include column;
       @include gutter-v(1rem);
